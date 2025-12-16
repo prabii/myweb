@@ -1,0 +1,32 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding-top: 90px;
+  background: var(--dark-bg);
+  min-height: calc(100vh - 200px);
+  transition: background-color 0.3s ease;
+}
+
+@media (max-width: 968px) {
+  main {
+    padding-top: 75px;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-top: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-top: 65px;
+  }
+}
+

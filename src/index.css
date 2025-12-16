@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-bg: #0a0a0a;
+  --dark-card: #1a1a1a;
+  --dark-border: #2a2a2a;
+  --gold: #d4af37;
+  --gold-light: #f4d03f;
+  --gold-dark: #b8940f;
+  --text-light: #cccccc;
+  --text-dark: #ffffff;
+  --primary-color: #1a1a1a;
+  --secondary-color: #d4af37;
+  --accent-green: #2d5a3d;
+  --accent-green-light: #3d7a55;
+  --text-color: #cccccc;
+  --bg-light: #1a1a1a;
+  --bg-white: #0a0a0a;
+  --border-color: #2a2a2a;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 24px rgba(212, 175, 55, 0.3);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="blackwhite"] {
+  --dark-bg: #ffffff;
+  --dark-card: #f5f7fa;
+  --dark-border: #e1e8ed;
+  --gold: #2563eb;
+  --gold-light: #3b82f6;
+  --gold-dark: #1e40af;
+  --text-light: #334155;
+  --text-dark: #1e293b;
+  --primary-color: #f5f7fa;
+  --secondary-color: #2563eb;
+  --accent-green: #059669;
+  --accent-green-light: #10b981;
+  --text-color: #334155;
+  --bg-light: #f5f7fa;
+  --bg-white: #ffffff;
+  --border-color: #e1e8ed;
+  --shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+  --shadow-hover: 0 4px 16px rgba(37, 99, 235, 0.15);
+  --shadow-lg: 0 8px 24px rgba(37, 99, 235, 0.12);
+  --shadow-xl: 0 12px 32px rgba(37, 99, 235, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-light);
+  background-color: var(--dark-bg);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="blackwhite"] body {
+  background-color: var(--dark-bg);
+}
+
+[data-theme="blackwhite"] .product-image-container,
+[data-theme="blackwhite"] .product-image-section {
+  background: #ffffff;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+}
+

@@ -1,0 +1,114 @@
+.product-section {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  background: var(--dark-bg);
+}
+
+.section-header {
+  max-width: 1400px;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: -1px;
+  position: relative;
+  padding-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.section-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.scroll-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--dark-card);
+  color: var(--text-light);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  border: 2px solid var(--dark-border);
+  box-shadow: var(--shadow);
+}
+
+.scroll-btn:hover {
+  background: var(--gold);
+  color: var(--dark-bg);
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+
+.products-container {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dark-border) transparent;
+}
+
+.products-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.products-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.products-container::-webkit-scrollbar-thumb {
+  background: var(--dark-border);
+  border-radius: 4px;
+}
+
+.products-container::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+.products-container > * {
+  flex: 0 0 280px;
+  min-width: 280px;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    padding: 0 1rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .products-container {
+    padding: 0 1rem;
+  }
+
+  .products-container > * {
+    flex: 0 0 240px;
+    min-width: 240px;
+  }
+}
+
