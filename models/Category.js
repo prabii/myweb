@@ -45,7 +45,7 @@ const categorySchema = new mongoose.Schema({
   timestamps: true
 })
 
-categorySchema.index({ slug: 1 })
+// Note: slug already has unique: true which creates an index automatically
 categorySchema.index({ active: 1 })
 categorySchema.index({ position: 1 })
 
