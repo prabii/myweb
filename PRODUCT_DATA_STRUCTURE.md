@@ -97,8 +97,16 @@ This document lists all product fields available in the admin dashboard and thei
 ### 13. **Additional Images** (`images`)
 - **Type**: Array of Strings (URLs)
 - **Required**: No
-- **Example**: `["https://example.com/img1.jpg", "https://example.com/img2.jpg"]`
-- **Description**: Additional product images (gallery)
+- **Example URLs**: 
+  ```json
+  [
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64",
+    "https://m.media-amazon.com/images/I/71abc123xyz._AC_SL1500_.jpg",
+    "https://myweb-hyh3.onrender.com/api/uploads/products/vacuum-side.jpg",
+    "https://myweb-hyh3.onrender.com/api/uploads/products/vacuum-back.jpg"
+  ]
+  ```
+- **Description**: Additional product images (gallery) - multiple views of the product
 
 ### 14. **Amazon URL** (`amazonUrl`)
 - **Type**: String (URL)
@@ -142,7 +150,7 @@ This document lists all product fields available in the admin dashboard and thei
 
 ---
 
-## Complete Product Example
+## Complete Product Example with URLs
 
 ```json
 {
@@ -153,17 +161,17 @@ This document lists all product fields available in the admin dashboard and thei
   "originalPrice": 3999.00,
   "discount": 25,
   "category": "smart-home",
-  "image": "https://example.com/vacuum.jpg",
+  "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64",
   "images": [
-    "https://example.com/vacuum-1.jpg",
-    "https://example.com/vacuum-2.jpg",
-    "https://example.com/vacuum-3.jpg"
+    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64",
+    "https://m.media-amazon.com/images/I/71abc123xyz._AC_SL1500_.jpg",
+    "https://myweb-hyh3.onrender.com/api/uploads/products/vacuum-side.jpg"
   ],
   "rating": 4.5,
   "reviews": 125,
   "stock": 50,
   "delivery": "Free delivery",
-  "amazonUrl": "https://amazon.in/dp/B08XYZ123",
+  "amazonUrl": "https://www.amazon.in/dp/B08XYZ123",
   "tags": ["smart", "automated", "wi-fi", "app-control", "robot"],
   "specifications": {
     "Power": "1200W",
@@ -225,8 +233,15 @@ Categories must match existing category slugs. Common categories:
 ## Tips for Admin
 
 1. **Image Upload**: You can either:
-   - Upload a file (will be stored on server)
-   - Enter an image URL (external link)
+   - **Upload a file**: Will be stored at `https://myweb-hyh3.onrender.com/api/uploads/products/filename.jpg`
+   - **Enter an image URL**: Use external URLs like:
+     - Unsplash: `https://images.unsplash.com/photo-...`
+     - Amazon: `https://m.media-amazon.com/images/I/...`
+     - Any public image URL
+   - **Image Requirements**: 
+     - Formats: JPG, PNG, WebP
+     - Recommended size: 800x800px or larger
+     - Max file size: 5MB
 
 2. **Price Calculation**: 
    - If you set `originalPrice` and `price`, discount will be calculated automatically
@@ -295,4 +310,87 @@ Categories must match existing category slugs. Common categories:
 
 ---
 
-**Last Updated**: Based on current Admin Dashboard implementation
+## URL Examples Reference
+
+### Image URL Sources:
+
+1. **Unsplash** (Free stock photos):
+   ```
+   https://images.unsplash.com/photo-1558618666-fcd25c85cd64
+   https://images.unsplash.com/photo-1581091226825-a6a2a5aee158
+   ```
+
+2. **Amazon Product Images**:
+   ```
+   https://m.media-amazon.com/images/I/71abc123xyz._AC_SL1500_.jpg
+   https://m.media-amazon.com/images/I/81def456uvw._AC_SX679_.jpg
+   ```
+
+3. **Server Uploaded Images**:
+   ```
+   https://myweb-hyh3.onrender.com/api/uploads/products/vacuum-cleaner.jpg
+   https://myweb-hyh3.onrender.com/api/uploads/products/diy-kit-1.jpg
+   ```
+
+4. **CDN URLs** (Cloudinary, Imgur, etc.):
+   ```
+   https://res.cloudinary.com/your-cloud/image/upload/v123/product.jpg
+   https://i.imgur.com/abc123.jpg
+   ```
+
+### Amazon Product URLs:
+
+1. **Standard Product Page**:
+   ```
+   https://www.amazon.in/dp/B08XYZ123
+   ```
+
+2. **Full Product URL**:
+   ```
+   https://www.amazon.in/Smart-Robot-Vacuum-Cleaner/dp/B08XYZ123/ref=sr_1_1
+   ```
+
+3. **Amazon Short Link**:
+   ```
+   https://amzn.to/3abc123
+   ```
+
+### API Request Examples:
+
+**Get All Products**:
+```bash
+curl https://myweb-hyh3.onrender.com/api/products
+```
+
+**Get Products by Category**:
+```bash
+curl https://myweb-hyh3.onrender.com/api/products?category=smart-home
+```
+
+**Create Product** (with auth token):
+```bash
+curl -X POST https://myweb-hyh3.onrender.com/api/products \
+  -H "Authorization: Bearer YOUR_ADMIN_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Smart Robot Vacuum",
+    "brand": "TechHome",
+    "description": "Advanced robot vacuum...",
+    "price": 2999,
+    "category": "smart-home",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64"
+  }'
+```
+
+**Upload Image**:
+```bash
+curl -X POST https://myweb-hyh3.onrender.com/api/upload \
+  -H "Authorization: Bearer YOUR_ADMIN_TOKEN" \
+  -F "file=@/path/to/image.jpg"
+```
+
+---
+
+**Last Updated**: Based on current Admin Dashboard implementation  
+**Backend URL**: `https://myweb-hyh3.onrender.com/api`  
+**Frontend URL**: `https://myweb-seven-chi.vercel.app`
