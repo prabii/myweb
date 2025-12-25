@@ -1,0 +1,118 @@
+.privacy-page {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    padding-bottom: 4rem;
+}
+
+.privacy-hero {
+    background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark-bg) 100%);
+    padding: 6rem 0 4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--dark-border);
+    margin-bottom: 3rem;
+}
+
+.privacy-hero h1 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: var(--text-light);
+    opacity: 0.7;
+}
+
+.privacy-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--dark-card);
+    border: 1px solid var(--dark-border);
+    border-radius: var(--radius-xl);
+    padding: 3rem;
+}
+
+.privacy-section {
+    margin-bottom: 3rem;
+}
+
+.privacy-section:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-section h2 {
+    color: var(--gold);
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.privacy-section h3 {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.75rem;
+    opacity: 0.9;
+}
+
+.privacy-section p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.privacy-section ul {
+    list-style: disc;
+    padding-left: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.privacy-section li {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.privacy-section strong {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .privacy-hero {
+        padding: 4rem 0 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .privacy-content {
+        padding: 2rem;
+    }
+
+    .privacy-section ul {
+        padding-left: 1.5rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .privacy-content {
+        padding: 1.5rem;
+    }
+
+    .privacy-section {
+        margin-bottom: 2rem;
+    }
+
+    .privacy-section p,
+    .privacy-section li {
+        font-size: 0.95rem;
+    }
+
+    .privacy-section ul {
+        padding-left: 1.25rem;
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "watch": ["routes", "models", "middleware", "config", "server.js"],
+  "ext": "js,json",
+  "ignore": ["node_modules", "uploads", "test-connection.js"],
+  "exec": "node server.js",
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "delay": 1000,
+  "restartable": "rs"
+}
