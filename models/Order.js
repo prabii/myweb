@@ -14,8 +14,7 @@ const orderSchema = new mongoose.Schema({
     },
     email: {
       type: String,
-      required: true,
-      index: true
+      required: true
     },
     phone: {
       type: String,
@@ -78,8 +77,7 @@ const orderSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['pending', 'processing', 'confirmed', 'shipped', 'in-transit', 'delivered', 'cancelled'],
-    default: 'pending',
-    index: true
+    default: 'pending'
   },
   statusHistory: [{
     status: String,

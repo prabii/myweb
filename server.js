@@ -35,6 +35,8 @@ const corsOptions = {
       'http://localhost:5173',
       'http://localhost:3000',
       'http://localhost:5174',
+      'https://ecom-azure-phi.vercel.app',
+      'https://myweb-seven-chi.vercel.app',
       process.env.FRONTEND_URL
     ].filter(Boolean)
     
