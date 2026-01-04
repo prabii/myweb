@@ -57,22 +57,22 @@ const Products = () => {
         // Legacy categories for backward compatibility
         const smartHome = products.filter(p =>
           p.category === 'smart-home' ||
-          p.category === 'Electronics' ||
-          p.category === 'Home & Kitchen' ||
+    p.category === 'Electronics' ||
+    p.category === 'Home & Kitchen' ||
           p.name?.toLowerCase().includes('robot') ||
           p.name?.toLowerCase().includes('smart') ||
           p.name?.toLowerCase().includes('storage') ||
           p.name?.toLowerCase().includes('organizer')
-        )
-        
+  )
+
         const diyKits = products.filter(p =>
           p.category === 'diy-kits' ||
-          p.category === 'Hobbies' ||
+    p.category === 'Hobbies' ||
           p.name?.toLowerCase().includes('book nook') ||
           p.name?.toLowerCase().includes('dollhouse') ||
           p.name?.toLowerCase().includes('miniature')
-        )
-        
+  )
+
         if (smartHome.length > 0) grouped['smart-home'] = smartHome
         if (diyKits.length > 0) grouped['diy-kits'] = diyKits
         
@@ -160,18 +160,18 @@ const Products = () => {
           {/* Legacy categories for backward compatibility */}
           {categories.length === 0 && (
             <>
-              <button
-                className={`filter-btn ${activeCategory === 'smart-home' ? 'active' : ''}`}
-                onClick={() => handleCategoryChange('smart-home')}
-              >
-                🏠 Smart Home
-              </button>
-              <button
-                className={`filter-btn ${activeCategory === 'diy-kits' ? 'active' : ''}`}
-                onClick={() => handleCategoryChange('diy-kits')}
-              >
-                🎨 DIY Kits
-              </button>
+          <button
+            className={`filter-btn ${activeCategory === 'smart-home' ? 'active' : ''}`}
+            onClick={() => handleCategoryChange('smart-home')}
+          >
+            🏠 Smart Home
+          </button>
+          <button
+            className={`filter-btn ${activeCategory === 'diy-kits' ? 'active' : ''}`}
+            onClick={() => handleCategoryChange('diy-kits')}
+          >
+            🎨 DIY Kits
+          </button>
             </>
           )}
         </div>
@@ -197,18 +197,18 @@ const Products = () => {
               })}
               {/* Legacy categories */}
               {categoryProducts['smart-home']?.length > 0 && (
-                <ProductSection
-                  title="Smart Home Solutions"
+          <ProductSection
+            title="Smart Home Solutions"
                   products={categoryProducts['smart-home']}
-                  id="smart-home"
-                />
+            id="smart-home"
+          />
               )}
               {categoryProducts['diy-kits']?.length > 0 && (
-                <ProductSection
-                  title="DIY Miniature Kits"
+          <ProductSection
+            title="DIY Miniature Kits"
                   products={categoryProducts['diy-kits']}
-                  id="diy-kits"
-                />
+            id="diy-kits"
+          />
               )}
               {/* Show all products if no categories have products */}
               {categories.length === 0 && Object.keys(categoryProducts).length === 0 && allProducts.length > 0 && (
@@ -228,11 +228,11 @@ const Products = () => {
       ) : (
         <>
           {getFilteredProducts().length > 0 ? (
-            <ProductSection
+        <ProductSection
               title={getCategoryDisplayName(activeCategory)}
-              products={getFilteredProducts()}
-              id={activeCategory}
-            />
+          products={getFilteredProducts()}
+          id={activeCategory}
+        />
           ) : (
             <div className="empty-state">
               <p>No products found in this category.</p>

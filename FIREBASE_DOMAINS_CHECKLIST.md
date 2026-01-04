@@ -126,3 +126,4 @@ If your Vercel deployment shows `auth/unauthorized-domain`:
 ---
 
 **Remember**: Firebase authentication will **NOT work** on any domain that is not explicitly listed in Authorized Domains!
+
