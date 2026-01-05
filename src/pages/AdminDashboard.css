@@ -495,6 +495,10 @@
   padding: 4rem;
   color: var(--text-muted);
   font-size: 1.1rem;
+  background: var(--dark-card);
+  border-radius: 12px;
+  border: 2px dashed var(--dark-border);
+  margin-top: 1.5rem;
 }
 
 .loading {
@@ -599,70 +603,95 @@
   background: var(--dark-card);
   border-radius: 12px;
   overflow-x: auto;
-  border: 1px solid var(--dark-border);
+  border: 2px solid var(--dark-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-top: 1.5rem;
 }
 
 .orders-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   min-width: 1200px;
 }
 
 .orders-table thead {
-  background: var(--dark-bg);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
   position: sticky;
   top: 0;
   z-index: 10;
+  border-bottom: 3px solid var(--gold);
 }
 
 .orders-table th {
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   text-align: left;
   color: var(--gold);
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 2px solid var(--dark-border);
   white-space: nowrap;
+  border-right: 1px solid var(--dark-border);
+}
+
+.orders-table th:last-child {
+  border-right: none;
 }
 
 .orders-table td {
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   color: var(--text-light);
   border-bottom: 1px solid var(--dark-border);
+  border-right: 1px solid var(--dark-border);
   vertical-align: middle;
+  background: var(--dark-card);
+}
+
+.orders-table td:last-child {
+  border-right: none;
 }
 
 .orders-table tbody tr {
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
 }
 
 .orders-table tbody tr:hover {
-  background: rgba(212, 175, 55, 0.05);
+  background: rgba(212, 175, 55, 0.08);
+  border-left-color: var(--gold);
+  transform: translateX(2px);
 }
 
 .orders-table tbody tr.expanded {
-  background: rgba(212, 175, 55, 0.1);
+  background: rgba(212, 175, 55, 0.12);
+  border-left-color: var(--gold);
+}
+
+.orders-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .order-id-cell {
   font-family: monospace;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--gold);
+  font-size: 1rem;
 }
 
 .email-cell {
-  max-width: 200px;
+  max-width: 220px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: var(--text-light);
 }
 
 .amount-cell {
   font-weight: 700;
   color: var(--gold);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+  white-space: nowrap;
 }
 
 .payment-badge {
@@ -831,6 +860,11 @@
 @media (max-width: 1200px) {
   .orders-table-container {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .orders-table {
+    min-width: 1100px;
   }
 
   .expanded-details-grid {
@@ -839,18 +873,54 @@
 }
 
 @media (max-width: 768px) {
+  .orders-table-container {
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+
   .orders-table {
     min-width: 1000px;
+    font-size: 0.9rem;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
   }
 
   .table-actions {
     flex-direction: column;
     gap: 0.5rem;
+    width: 100%;
   }
 
   .status-select,
   .view-btn-table {
     width: 100%;
+    min-width: auto;
+  }
+
+  .order-status-badge {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .payment-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-table {
+    min-width: 900px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -866,11 +936,13 @@
 .order-status-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
   color: white;
   font-weight: 600;
   font-size: 0.85rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
 }
 
 .status-change-section {
