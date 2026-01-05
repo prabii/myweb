@@ -2220,90 +2220,145 @@ const OrdersManager = () => {
         </select>
       </div>
 
-      <div className="items-list">
-        {orders.length === 0 ? (
-          <div className="empty-state">No orders found</div>
-        ) : (
-          orders.map((order) => (
-            <div key={order._id} className="item-card order-card">
-              <div className="item-details">
-                <div className="order-header-info">
-                  <h3>Order #{order.orderId || order._id}</h3>
-                  <div className="order-status-badge" style={{ backgroundColor: getStatusColor(order.status || 'pending') }}>
-                    {getStatusIcon(order.status || 'pending')}
-                    <span style={{ marginLeft: '0.5rem' }}>
-                      {(order.status || 'pending').charAt(0).toUpperCase() + (order.status || 'pending').slice(1)}
+      {orders.length === 0 ? (
+        <div className="empty-state">No orders found</div>
+      ) : (
+        <div className="orders-table-container">
+          <table className="orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Items</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order._id} className={selectedOrder === order._id ? 'expanded' : ''}>
+                  <td className="order-id-cell">
+                    <strong>#{order.orderId || order._id.substring(0, 8)}</strong>
+                  </td>
+                  <td>{order.customer?.name || 'N/A'}</td>
+                  <td className="email-cell">{order.customer?.email || 'N/A'}</td>
+                  <td>{order.customer?.phone || 'N/A'}</td>
+                  <td>{order.items?.length || 0} item(s)</td>
+                  <td className="amount-cell">₹{(order.amount || 0).toLocaleString('en-IN')}</td>
+                  <td>
+                    <span className={`payment-badge ${order.paymentMethod === 'cod' ? 'cod' : 'online'}`}>
+                      {order.paymentMethod === 'cod' ? 'COD' : 'Online'}
                     </span>
+                  </td>
+                  <td>
+                    <div className="order-status-badge" style={{ backgroundColor: getStatusColor(order.status || 'pending') }}>
+                      {getStatusIcon(order.status || 'pending')}
+                      <span style={{ marginLeft: '0.5rem' }}>
+                        {(order.status || 'pending').charAt(0).toUpperCase() + (order.status || 'pending').slice(1)}
+                      </span>
+                    </div>
+                  </td>
+                  <td className="date-cell">{new Date(order.date || order.createdAt).toLocaleDateString('en-IN')}</td>
+                  <td className="actions-cell">
+                    <div className="table-actions">
+                      <select 
+                        className="status-select"
+                        value={order.status || 'pending'} 
+                        onChange={(e) => handleStatusChange(order._id, e.target.value)}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="in-transit">In Transit</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="cancelled">Cancelled</option>
+                      </select>
+                      <button 
+                        className="view-btn-table" 
+                        onClick={() => {
+                          const orderId = order._id
+                          setSelectedOrder(selectedOrder === orderId ? null : orderId)
+                        }}
+                      >
+                        {selectedOrder === order._id ? 'Hide' : 'View'}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Expanded Order Details */}
+          {orders.map((order) => (
+            selectedOrder === order._id && (
+              <div key={`details-${order._id}`} className="order-details-expanded-table">
+                <div className="expanded-details-grid">
+                  <div className="detail-column">
+                    <h4>Shipping Address</h4>
+                    <p><strong>{order.customer?.name || 'N/A'}</strong></p>
+                    <p>{order.customer?.address || 'N/A'}</p>
+                    <p>{order.customer?.city || ''}, {order.customer?.state || ''} - {order.customer?.pincode || ''}</p>
+                    <p>Phone: {order.customer?.phone || 'N/A'}</p>
+                    {order.coupon && <p><strong>Coupon Used:</strong> {order.coupon}</p>}
                   </div>
-                </div>
-                <p><strong>Customer:</strong> {order.customer?.name || 'N/A'}</p>
-                <p><strong>Email:</strong> {order.customer?.email || 'N/A'}</p>
-                <p><strong>Phone:</strong> {order.customer?.phone || 'N/A'}</p>
-                <p><strong>Items:</strong> {order.items?.length || 0} item(s)</p>
-                <p><strong>Amount:</strong> ₹{(order.amount || 0).toLocaleString('en-IN')}</p>
-                <p><strong>Payment:</strong> {order.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Online Payment'}</p>
-                <p><strong>Date:</strong> {new Date(order.date || order.createdAt).toLocaleString('en-IN')}</p>
-                {order.coupon && <p><strong>Coupon:</strong> {order.coupon}</p>}
-              </div>
-              <div className="item-actions">
-                <div className="status-change-section">
-                  <label>Change Status:</label>
-                  <select 
-                    value={order.status || 'pending'} 
-                    onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="processing">Processing</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="shipped">Shipped</option>
-                    <option value="in-transit">In Transit</option>
-                    <option value="delivered">Delivered</option>
-                    <option value="cancelled">Cancelled</option>
-                  </select>
-                </div>
-                <button 
-                  className="view-btn" 
-                  onClick={() => {
-                    const orderId = order._id
-                    setSelectedOrder(selectedOrder === orderId ? null : orderId)
-                  }}
-                >
-                  {selectedOrder === order._id ? 'Hide' : 'View'} Details
-                </button>
-              </div>
-              {selectedOrder === order._id && (
-                <div className="order-details-expanded">
-                  <h4>Shipping Address:</h4>
-                  <p>{order.customer?.address}</p>
-                  <p>{order.customer?.city}, {order.customer?.state} - {order.customer?.pincode}</p>
-                  
-                  <h4>Order Items:</h4>
-                  <div className="order-items-list">
-                    {order.items?.map((item, idx) => (
-                      <div key={idx} className="order-item-row">
-                        <img src={item.image} alt={item.name} className="order-item-image-small" />
-                        <div className="order-item-info">
-                          <p><strong>{item.name}</strong></p>
-                          <p>Qty: {item.quantity} × ₹{item.price?.toLocaleString('en-IN')}</p>
-                        </div>
-                        <div className="order-item-total">
-                          ₹{((item.price || 0) * (item.quantity || 1)).toLocaleString('en-IN')}
-                        </div>
+                  <div className="detail-column">
+                    <h4>Order Items ({order.items?.length || 0})</h4>
+                    <div className="order-items-table">
+                      <table className="items-table">
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {order.items?.map((item, idx) => (
+                            <tr key={idx}>
+                              <td className="product-cell">
+                                <img src={item.image} alt={item.name} className="order-item-image-small" />
+                                <span>{item.name}</span>
+                              </td>
+                              <td>{item.quantity}</td>
+                              <td>₹{item.price?.toLocaleString('en-IN')}</td>
+                              <td className="item-total">₹{((item.price || 0) * (item.quantity || 1)).toLocaleString('en-IN')}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="order-summary-table">
+                      <div className="summary-row">
+                        <span>Subtotal:</span>
+                        <span>₹{(order.subtotal || order.amount || 0).toLocaleString('en-IN')}</span>
                       </div>
-                    ))}
-                  </div>
-                  
-                  <div className="order-summary">
-                    <p>Subtotal: ₹{(order.subtotal || 0).toLocaleString('en-IN')}</p>
-                    {order.discount > 0 && <p>Discount: -₹{order.discount.toLocaleString('en-IN')}</p>}
-                    <p><strong>Total: ₹{(order.amount || 0).toLocaleString('en-IN')}</strong></p>
+                      {order.discount > 0 && (
+                        <div className="summary-row">
+                          <span>Discount:</span>
+                          <span>-₹{order.discount.toLocaleString('en-IN')}</span>
+                        </div>
+                      )}
+                      <div className="summary-row total-row">
+                        <span><strong>Total:</strong></span>
+                        <span><strong>₹{(order.amount || 0).toLocaleString('en-IN')}</strong></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              )}
-            </div>
-          ))
-        )}
-      </div>
+              </div>
+            )
+          ))}
+        </div>
+      )}
     </div>
   )
 }

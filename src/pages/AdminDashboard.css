@@ -594,6 +594,266 @@
   margin-bottom: 1rem;
 }
 
+/* Orders Table Styles */
+.orders-table-container {
+  background: var(--dark-card);
+  border-radius: 12px;
+  overflow-x: auto;
+  border: 1px solid var(--dark-border);
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1200px;
+}
+
+.orders-table thead {
+  background: var(--dark-bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.orders-table th {
+  padding: 1rem;
+  text-align: left;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--dark-border);
+  white-space: nowrap;
+}
+
+.orders-table td {
+  padding: 1rem;
+  color: var(--text-light);
+  border-bottom: 1px solid var(--dark-border);
+  vertical-align: middle;
+}
+
+.orders-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.orders-table tbody tr:hover {
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.orders-table tbody tr.expanded {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.order-id-cell {
+  font-family: monospace;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.email-cell {
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amount-cell {
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+
+.payment-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.payment-badge.cod {
+  background: rgba(243, 156, 18, 0.2);
+  color: #f39c12;
+  border: 1px solid #f39c12;
+}
+
+.payment-badge.online {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid #2ecc71;
+}
+
+.date-cell {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.actions-cell {
+  min-width: 180px;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.status-select {
+  padding: 0.4rem 0.6rem;
+  background: var(--dark-bg);
+  color: var(--text-light);
+  border: 1px solid var(--dark-border);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.status-select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.view-btn-table {
+  padding: 0.4rem 0.8rem;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.view-btn-table:hover {
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.order-details-expanded-table {
+  background: var(--dark-bg);
+  border-top: 2px solid var(--gold);
+  padding: 2rem;
+  margin-top: 0;
+  border-radius: 0 0 12px 12px;
+}
+
+.expanded-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+}
+
+.detail-column h4 {
+  color: var(--gold);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.detail-column p {
+  color: var(--text-light);
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.order-items-table {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.items-table thead {
+  background: var(--dark-card);
+}
+
+.items-table th {
+  padding: 0.75rem;
+  text-align: left;
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.items-table td {
+  padding: 0.75rem;
+  color: var(--text-light);
+  border-bottom: 1px solid var(--dark-border);
+}
+
+.product-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.product-cell img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.order-summary-table {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--dark-border);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  color: var(--text-light);
+}
+
+.summary-row.total-row {
+  border-top: 1px solid var(--dark-border);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.summary-row.total-row span {
+  color: var(--gold);
+}
+
+@media (max-width: 1200px) {
+  .orders-table-container {
+    overflow-x: auto;
+  }
+
+  .expanded-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .orders-table {
+    min-width: 1000px;
+  }
+
+  .table-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .status-select,
+  .view-btn-table {
+    width: 100%;
+  }
+}
+
 .order-header-info {
   display: flex;
   justify-content: space-between;
