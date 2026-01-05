@@ -19,6 +19,10 @@ import customerRoutes from './routes/customers.js'
 // Load environment variables
 dotenv.config()
 
+// Initialize Firebase Admin SDK (optional - for server-side Firebase operations)
+// This will be initialized when imported
+import './config/firebase-admin.js'
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 

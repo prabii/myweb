@@ -1,24 +1,38 @@
 {
-  "name": "mechheaven-ecommerce",
+  "name": "mechheaven-backend",
   "version": "1.0.0",
-  "description": "MechHeaven E-commerce Store",
+  "description": "Backend API for MechHeaven E-commerce",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node server.js",
+    "dev": "npx nodemon server.js",
+    "server": "npx nodemon server.js",
+    "import-products": "node scripts/importStaticProducts.js"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ecommerce",
+    "api",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0",
-    "firebase": "^12.7.0",
-    "lucide-react": "^0.562.0"
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "firebase-admin": "^13.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "multer": "^1.4.5-lts.1",
+    "razorpay": "^2.9.6"
   },
   "devDependencies": {
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.8"
+    "nodemon": "^3.0.2"
   }
 }
