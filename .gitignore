@@ -5,13 +5,20 @@ node_modules/
 .env
 .env.local
 .env.production
+.env.*.local
+backend/.env
+Frontend/.env
 
-# Firebase Service Account (contains sensitive credentials)
+# Firebase Service Account Files (contains sensitive credentials)
 config/*firebase-adminsdk*.json
+**/firebase-adminsdk*.json
+**/*firebase-adminsdk*.json
+backend/config/*firebase-adminsdk*.json
 *.firebase-adminsdk*.json
 
 # Uploads
 uploads/
+backend/uploads/
 
 # Logs
 logs/
@@ -26,23 +33,6 @@ lerna-debug.log*
 .DS_Store
 Thumbs.db
 
-<<<<<<< HEAD
-# Firebase Service Account Files
-**/firebase-adminsdk*.json
-**/*firebase-adminsdk*.json
-backend/config/*firebase-adminsdk*.json
-*.firebase-adminsdk*.json
-
-# Environment files
-.env
-.env.local
-.env.*.local
-backend/.env
-Frontend/.env
-
-# Uploads
-backend/uploads/
-=======
 # IDE
 .vscode/
 .idea/
@@ -52,4 +42,15 @@ backend/uploads/
 # Build
 dist/
 build/
->>>>>>> 1e9d74a6cf71a3be6c1a9281a38fc5821b6c0a26
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
