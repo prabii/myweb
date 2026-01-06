@@ -14,9 +14,17 @@
   min-height: 80px;
 }
 
+/* Hide header on mobile - bottom nav is available */
+@media (max-width: 768px) {
+  .header {
+    display: none;
+  }
+}
+
 @media (min-width: 769px) {
   .header {
     min-height: 90px;
+    display: flex;
   }
 }
 
