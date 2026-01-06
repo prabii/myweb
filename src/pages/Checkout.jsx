@@ -901,8 +901,29 @@ const Checkout = () => {
                 </div>
               ))}
             </div>
+            
+            <div className="order-summary-totals">
+              <div className="summary-row">
+                <span>Subtotal</span>
+                <span>₹{subtotal.toLocaleString('en-IN')}</span>
+              </div>
+              {couponDiscount > 0 && (
+                <div className="summary-row discount">
+                  <span>Discount ({appliedCoupon?.code})</span>
+                  <span className="discount-amount">-₹{couponDiscount.toLocaleString('en-IN')}</span>
+                </div>
+              )}
+              <div className="summary-row">
+                <span>Shipping</span>
+                <span className="free">FREE</span>
+              </div>
+              <div className="summary-row total">
+                <span>Total</span>
+                <span>₹{totalAmount.toLocaleString('en-IN')}</span>
+              </div>
+            </div>
 
-            {/* Coupon Code Section */}
+            {/* Coupon Code Section - Moved after Total */}
             <div className="coupon-section">
               <h3>Have a Coupon?</h3>
               {!appliedCoupon ? (
@@ -948,27 +969,6 @@ const Checkout = () => {
                 </div>
               )}
               {couponError && <p className="coupon-error">{couponError}</p>}
-            </div>
-            
-            <div className="order-summary-totals">
-              <div className="summary-row">
-                <span>Subtotal</span>
-                <span>₹{subtotal.toLocaleString('en-IN')}</span>
-              </div>
-              {couponDiscount > 0 && (
-                <div className="summary-row discount">
-                  <span>Discount ({appliedCoupon?.code})</span>
-                  <span className="discount-amount">-₹{couponDiscount.toLocaleString('en-IN')}</span>
-                </div>
-              )}
-              <div className="summary-row">
-                <span>Shipping</span>
-                <span className="free">FREE</span>
-              </div>
-              <div className="summary-row total">
-                <span>Total</span>
-                <span>₹{totalAmount.toLocaleString('en-IN')}</span>
-              </div>
             </div>
             
             <button 
